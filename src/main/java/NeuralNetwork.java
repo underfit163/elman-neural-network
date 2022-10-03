@@ -1,3 +1,8 @@
+import java.io.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+
 public class NeuralNetwork {
 
     int entersLen;//N+K
@@ -89,8 +94,7 @@ public class NeuralNetwork {
         double gError = 0;
         while (--epoch > 0) {
             for (int i = 0; i < trainData.length; i++) {
-                if (enters.length - hidden.length + 1 - 1 >= 0)
-                    System.arraycopy(trainData[i], 0, enters, 1, enters.length - hidden.length + 1 - 1);
+                System.arraycopy(trainData[i], 0, enters, 1, enters.length - hidden.length);
                 elmanOuter();
 
                 //целевая функция
@@ -106,6 +110,7 @@ public class NeuralNetwork {
             }
         }
     }
+
 
 
     public void saveHidden() {
