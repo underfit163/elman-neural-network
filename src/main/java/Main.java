@@ -31,6 +31,10 @@ public class Main {
             }
             System.out.println(Arrays.deepToString(testData));
 
+            int hiddenLen = testData.length * 2;
+            double alpha = (double) 1/(testData.length-1 + hiddenLen);
+
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
