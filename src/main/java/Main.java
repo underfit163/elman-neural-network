@@ -13,26 +13,30 @@ public class Main {
             System.out.println(Arrays.deepToString(allData));
             double[][] trainData = new double[120][5];
             double[][] testData = new double[30][5];
-            int partLen = trainData.length / 3;
-            for (int i = 0; i < partLen; i++) {
-                for (int j = 0; j < trainData[i].length; j++) {
-                    trainData[i][j] = allData[i][j];
-                    trainData[i + partLen][j] = allData[i + (partLen + testData.length / 3)][j];
-                    trainData[i + 2 * partLen][j] = allData[i + 2 * (partLen + testData.length/3)][j];
+            int countClass = 3;
+
+            int partLen = allData.length / countClass;
+            int testPartLen = testData.length / countClass;
+            for (int k = 0; k < countClass; k++) {
+                for (int i = k * partLen; i < k*partLen + partLen; i++) {
+                    for (int j = 0; j < allData[i].length; j++) {
+                        if (i < partLen * (k + 1) - testPartLen)
+                            trainData[i - testPartLen * k][j] = allData[i][j];
+                        else testData[i - (partLen - testPartLen) * (k+1)][j] = allData[i][j];
+                    }
                 }
             }
+
             System.out.println(Arrays.deepToString(trainData));
-            for (int i = 0; i < testData.length / 3; i++) {
-                for (int j = 0; j < trainData[i].length; j++) {
-                    testData[i][j] = allData[i + partLen][j];
-                    testData[i + testData.length / 3][j] = allData[i + (testData.length / 3 + 2 * partLen)][j];
-                    testData[i + 2 * testData.length / 3][j] = allData[i + (2 * testData.length / 3 + 3 * partLen)][j];
-                }
-            }
             System.out.println(Arrays.deepToString(testData));
 
-            int hiddenLen = testData.length * 2;
-            double alpha = (double) 1/(testData.length-1 + hiddenLen);
+            int hiddenLen = (testData[0].length-1) * 2;
+            double alpha = (double) 1 / (testData.length - 1 + hiddenLen);
+
+
+            NeuralNetwork neuralNetwork = new NeuralNetwork(4, hiddenLen, 3, trainData, testData, 100, alpha);
+
+            neuralNetwork.elmanTrain();
 
 
         } catch (IOException e) {
