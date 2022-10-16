@@ -79,8 +79,9 @@ public class NeuralNetwork {
      * Алгоритм наискорейшего спуска
      */
     public void elmanTrain() {
-        double gError = 0;
+
         while (--epoch >= 0) {
+            double gError = 0;
             //После уточнения значений весов перейти к пункту 2 алгоритма для расчета в очередной момент времени.
             for (int t = 0; t < trainData.length; t++) {
                 elmanOuter(trainData[t]);
@@ -103,24 +104,12 @@ public class NeuralNetwork {
                 }
                 lErr *= 0.5;
                 gError += Math.abs(lErr);
-                //System.out.println("Глобальная ошибка: " + gError);
+                System.out.println("Глобальная ошибка: " + gError);
 
                 //4. Сформировать вектор градиента целевой функции относительно
                 //весов выходного и скрытого слоя с использованием формул (137), (140) и (141).
                 //5. Уточнить значения весов сети согласно правилам метода наискорейшего спуска:
                 // для нейронов выходного слоя сети по формуле (144)
-                /*double gradSI = 0;
-                for (int s = 0; s < output.length; s++) {
-                    for (int i = 0; i < hidden.length; i++) {
-                        gradSI += e[s] * derivativeActivationFunction(gS[s]) * hidden[i];
-                    }
-                }
-                for (int s = 0; s < output.length; s++) {
-                    for (int i = 0; i < hidden.length; i++) {
-                        wsi[i][s] = wsi[i][s] - alpha * gradSI;
-                    }
-                }*/
-
                 double[][] gdv2 = new double[hidden.length][output.length];// какая размерность вектора градиента? (K+1)*M
                 for (int i = 0; i < hidden.length; i++) {
                     for (int s = 0; s < output.length; s++) {
