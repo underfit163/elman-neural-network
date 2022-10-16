@@ -152,28 +152,20 @@ public class NeuralNetwork {
                                     * (enters[i] + dv[i - (enters.length - hidden.length)]);
                 }
 
-//                double[] gdv1 = new double[hidden.length];
-//                for (int i = 1; i < hidden.length; i++) {
-//                    for (int s = 0; s < output.length; s++) {
-//                        gdv1[i] += dv[i] * wsi[i][s];
-//                    }
-//                }
+                double[] gdv1 = new double[hidden.length];
+                for (int i = 1; i < hidden.length; i++) {
+                    for (int s = 0; s < output.length; s++) {
+                        gdv1[i] += dv[i] * wsi[i][s];
+                    }
+                }
                 double[][] gdv1End = new double[enters.length][hidden.length];
                 for (int i = 1; i < hidden.length; i++) {
                     for (int j = 0; j < enters.length; j++) {
                         for (int s = 0; s < output.length; s++) {
-                            gdv1End[j][i] += e[s] * derivativeActivationFunction(gS[s]) * dv[i] * wsi[i][s];
+                            gdv1End[j][i] += e[s] * derivativeActivationFunction(gS[s]) * gdv1[i];
                         }
                     }
                 }
-
-
-//                // какая размерность вектора градиента? (N+K+1)*K
-//                for (int i = 0; i < hidden.length; i++) {
-//                    for (int s = 0; s < output.length; s++) {
-//                        gdv1[i] += e[s] * derivativeActivationFunction(gS[s]) * dv[i] * wsi[i][s];
-//                    }
-//                }
 
                 for (int j = 0; j < enters.length; j++) {
                     for (int i = 1; i < hidden.length; i++) {

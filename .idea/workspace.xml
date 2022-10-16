@@ -5,8 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4c7f3247-8761-4e73-b9cd-7301e3fd04a7" name="Changes" comment="update train alg">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/NeuralNetwork.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/NeuralNetwork.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -86,7 +84,7 @@
       <workItem from="1665427272259" duration="1178000" />
       <workItem from="1665490447952" duration="20000" />
       <workItem from="1665568831701" duration="4293000" />
-      <workItem from="1665910606401" duration="8220000" />
+      <workItem from="1665910606401" duration="8442000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <created>1664745482829</created>
@@ -123,7 +121,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665910628514</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="update train alg">
+      <created>1665929871477</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1665929871477</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -152,17 +157,17 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Main.java</url>
-          <line>37</line>
+          <line>32</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Main.java</url>
-          <line>43</line>
+          <line>38</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Main.java</url>
-          <line>41</line>
+          <line>36</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -196,7 +201,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/NeuralNetwork.java</url>
-          <line>187</line>
+          <line>179</line>
           <properties class="NeuralNetwork" method="saveHidden">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
