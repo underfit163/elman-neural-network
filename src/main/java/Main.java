@@ -18,11 +18,11 @@ public class Main {
             int partLen = allData.length / countClass;
             int testPartLen = testData.length / countClass;
             for (int k = 0; k < countClass; k++) {
-                for (int i = k * partLen; i < k*partLen + partLen; i++) {
+                for (int i = k * partLen; i < k * partLen + partLen; i++) {
                     for (int j = 0; j < allData[i].length; j++) {
                         if (i < partLen * (k + 1) - testPartLen)
                             trainData[i - testPartLen * k][j] = allData[i][j];
-                        else testData[i - (partLen - testPartLen) * (k+1)][j] = allData[i][j];
+                        else testData[i - (partLen - testPartLen) * (k + 1)][j] = allData[i][j];
                     }
                 }
             }
@@ -30,9 +30,9 @@ public class Main {
             System.out.println(Arrays.deepToString(trainData));
             System.out.println(Arrays.deepToString(testData));
 
-            int hiddenLen = (testData[0].length-1) * 2;
+            int hiddenLen = (testData[0].length - 1) * 2;
             //double alpha = (double) 1 / (testData.length - 1 + hiddenLen);
-            double alpha = 0.1;
+            double alpha = 0.5;
 
             NeuralNetwork neuralNetwork = new NeuralNetwork(4, hiddenLen, 3, trainData, testData, 100, alpha);
 

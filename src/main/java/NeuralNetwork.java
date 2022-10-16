@@ -52,8 +52,8 @@ public class NeuralNetwork {
      * 2. Для очередного момента определить состояние всех нейронов
      * сети (сигналы vl и yl). На этой основе можно сформировать входной вектор для произвольного момента t.
      */
-    public double[] elmanOuter(double[] trainData) {
-        System.arraycopy(trainData, 0, enters, 1, enters.length - hidden.length);
+    public double[] elmanOuter(double[] testData) {
+        System.arraycopy(testData, 0, enters, 1, enters.length - hidden.length);
         //рассчитали первый слой
         saveHidden();
         for (int i = 1; i < hidden.length; i++) {//значение порогового элемента меняется при дальнейшем обучении или всегда остается 1?
@@ -103,7 +103,7 @@ public class NeuralNetwork {
                 }
                 lErr *= 0.5;
                 gError += Math.abs(lErr);
-                System.out.println("Глобальная ошибка: " + gError);
+                //System.out.println("Глобальная ошибка: " + gError);
 
                 //4. Сформировать вектор градиента целевой функции относительно
                 //весов выходного и скрытого слоя с использованием формул (137), (140) и (141).
@@ -128,7 +128,6 @@ public class NeuralNetwork {
                     }
                 }
 
-
                 for (int i = 0; i < hidden.length; i++) {
                     for (int s = 0; s < output.length; s++) {
                         wsi[i][s] = wsi[i][s] - alpha * gdv2[i][s];
@@ -138,10 +137,10 @@ public class NeuralNetwork {
                 //5. Уточнить значения весов сети согласно правилам метода наискорейшего спуска:
                 // для нейронов скрытого слоя сети по формуле (145)
                 double[] dv = new double[hidden.length];// мы от добавочного нейрона берем производную? да //xb - вместе с предыдущими значениями контекстного слоя? да
-                for (int k = 1; k < hidden.length; k++) {
+                for (int i = 1; i < hidden.length; i++) {
                     if (t != 0) {
-                        for (int i = 1; i < hidden.length; i++) {
-                            dv[k] += derivativeActivationFunction(enters[k + (enters.length - hidden.length)])
+                        for (int k = 1; k < hidden.length; k++) {
+                            dv[i] += derivativeActivationFunction(enters[k + (enters.length - hidden.length)])
                                     * wij[k + (enters.length - hidden.length)][i];
                         }
                     }
@@ -153,17 +152,17 @@ public class NeuralNetwork {
                                     * (enters[i] + dv[i - (enters.length - hidden.length)]);
                 }
 
-                double[] gdv1 = new double[hidden.length];
-                for (int i = 1; i < hidden.length; i++) {
-                    for (int s = 0; s < output.length; s++) {
-                        gdv1[i] += dv[i] * wsi[i][s];
-                    }
-                }
-                double[][] gdv12 = new double[enters.length][hidden.length];
+//                double[] gdv1 = new double[hidden.length];
+//                for (int i = 1; i < hidden.length; i++) {
+//                    for (int s = 0; s < output.length; s++) {
+//                        gdv1[i] += dv[i] * wsi[i][s];
+//                    }
+//                }
+                double[][] gdv1End = new double[enters.length][hidden.length];
                 for (int i = 1; i < hidden.length; i++) {
                     for (int j = 0; j < enters.length; j++) {
                         for (int s = 0; s < output.length; s++) {
-                            gdv12[j][i] += e[s] * derivativeActivationFunction(gS[s]) * gdv1[i];
+                            gdv1End[j][i] += e[s] * derivativeActivationFunction(gS[s]) * dv[i] * wsi[i][s];
                         }
                     }
                 }
@@ -178,7 +177,7 @@ public class NeuralNetwork {
 
                 for (int j = 0; j < enters.length; j++) {
                     for (int i = 1; i < hidden.length; i++) {
-                        wij[j][i] = wij[j][i] - alpha * gdv12[j][i];
+                        wij[j][i] = wij[j][i] - alpha * gdv1End[j][i];
                     }
                 }
             }
