@@ -31,13 +31,16 @@ public class Main {
             System.out.println(Arrays.deepToString(testData));
 
             int hiddenLen = (testData[0].length-1) * 2;
-            double alpha = (double) 1 / (testData.length - 1 + hiddenLen);
-
+            //double alpha = (double) 1 / (testData.length - 1 + hiddenLen);
+            double alpha = 0.1;
 
             NeuralNetwork neuralNetwork = new NeuralNetwork(4, hiddenLen, 3, trainData, testData, 100, alpha);
 
             neuralNetwork.elmanTrain();
 
+            for (int i = 0; i < testData.length; i++) {
+                System.out.println(Arrays.toString(neuralNetwork.elmanOuter(testData[i])));
+            }
 
         } catch (IOException e) {
             throw new RuntimeException(e);

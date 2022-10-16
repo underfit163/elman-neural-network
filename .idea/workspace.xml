@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4c7f3247-8761-4e73-b9cd-7301e3fd04a7" name="Changes" comment="add train alg">
+    <list default="true" id="4c7f3247-8761-4e73-b9cd-7301e3fd04a7" name="Changes" comment="update train alg">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/NeuralNetwork.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/NeuralNetwork.java" afterDir="false" />
@@ -33,18 +33,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "E:/elman-neural-network",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\elman-neural-network" />
@@ -81,7 +82,10 @@
       <workItem from="1665006880816" duration="1091000" />
       <workItem from="1665128565438" duration="9225000" />
       <workItem from="1665317197705" duration="14999000" />
-      <workItem from="1665389073926" duration="600000" />
+      <workItem from="1665389073926" duration="9232000" />
+      <workItem from="1665427272259" duration="1178000" />
+      <workItem from="1665490447952" duration="20000" />
+      <workItem from="1665568831701" duration="4293000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <created>1664745482829</created>
@@ -104,7 +108,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664934521231</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="update train alg">
+      <created>1665399850140</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1665399850140</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -125,16 +136,12 @@
     <MESSAGE value="first commit" />
     <MESSAGE value="add parse data" />
     <MESSAGE value="add train alg" />
-    <option name="LAST_COMMIT_MESSAGE" value="add train alg" />
+    <MESSAGE value="update train alg" />
+    <option name="LAST_COMMIT_MESSAGE" value="update train alg" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/NeuralNetwork.java</url>
-          <line>84</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Main.java</url>
           <line>32</line>
@@ -157,22 +164,22 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/NeuralNetwork.java</url>
-          <line>91</line>
+          <line>90</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/NeuralNetwork.java</url>
-          <line>152</line>
+          <line>151</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/NeuralNetwork.java</url>
-          <line>144</line>
+          <line>143</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/NeuralNetwork.java</url>
-          <line>55</line>
+          <line>54</line>
           <properties class="NeuralNetwork" method="elmanOuter">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -181,7 +188,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/NeuralNetwork.java</url>
-          <line>185</line>
+          <line>188</line>
           <properties class="NeuralNetwork" method="saveHidden">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
