@@ -3,6 +3,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class Main {
 
@@ -10,7 +12,13 @@ public class Main {
         try {
             String fileName = "iris.data";
             double[][] allData = covertFileToMatrix(fileName, 150, 5);
+
+            System.out.println("Все данные до нормализации:");
             System.out.println(Arrays.deepToString(allData));
+            //allData = normalizeData(allData);
+            //System.out.println("Все данные после нормализации:");
+            //System.out.println(Arrays.deepToString(allData));
+
             double[][] trainData = new double[120][5];
             double[][] testData = new double[30][5];
             int countClass = 3;
@@ -26,22 +34,50 @@ public class Main {
                     }
                 }
             }
-
+            System.out.println("Тренировочные данные:");
             System.out.println(Arrays.deepToString(trainData));
+
+            trainData = shuffleMatrix(trainData);
+            System.out.println("Тренировочные данные после шафла:");
+            System.out.println(Arrays.deepToString(trainData));
+
+            System.out.println("Тестовые данные:");
             System.out.println(Arrays.deepToString(testData));
 
-            int hiddenLen = (testData[0].length - 1) * 2;
+            //int hiddenLen = (testData[0].length - 1) * 2;
+            int hiddenLen = (4 + 3) / 2;
             //double alpha = (double) 1 / (testData.length - 1 + hiddenLen);
             double alpha = 0.5;
 
-            NeuralNetwork neuralNetwork = new NeuralNetwork(4, hiddenLen, 3, trainData, testData, 100, alpha);
+            NeuralNetwork neuralNetwork = new NeuralNetwork
+                    (4, hiddenLen, countClass, trainData, 100, alpha, 0.8);
 
             neuralNetwork.elmanTrain();
 
+            neuralNetwork.setEntersZero();
+            System.out.println("Выходной слой:");
+            int cl = 1;
+            int countTrue = 0;
+            int maxI = 0;
             for (int i = 0; i < testData.length; i++) {
-                System.out.println(Arrays.toString(neuralNetwork.elmanOuter(testData[i])));
+                if (i % 10 == 0) {
+                    System.out.println("Данные класса " + cl + ":");
+                    cl++;
+                }
+                double[] arr = neuralNetwork.elmanOuter(testData[i]);
+                double max = Double.MIN_VALUE;
+                for (int j = 0; j < arr.length; j++) {
+                    if (arr[j] > max) {
+                        max = arr[j];
+                        maxI = j;
+                    }
+                }
+                if (maxI + 1 == testData[i][testData[0].length - 1]) {
+                    countTrue++;
+                }
+                System.out.println(Arrays.toString(arr));
             }
-
+            System.out.println("Правильно предсказаных ответов: " + countTrue + " из " + testData.length);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -68,5 +104,32 @@ public class Main {
             i++;
         }
         return allData;
+    }
+
+    public static double[][] shuffleMatrix(double[][] matrix) {
+        List<double[]> rows = new ArrayList<>(Arrays.asList(matrix));
+        Collections.shuffle(rows);
+        for (int i = 0; i < matrix.length; i++) {
+            matrix[i] = rows.get(i);
+        }
+        return matrix;
+    }
+
+    public static double[][] normalizeData(double[][] data) {
+        for (int i = 0; i < data.length; i++) {
+            double divider = calcDividerForNormalization(data[i]);
+            for (int j = 0; j < data[i].length - 1; j++) {
+                data[i][j] = data[i][j] / divider;
+            }
+        }
+        return data;
+    }
+
+    private static double calcDividerForNormalization(double[] vector) {
+        double result = 0;
+        for (int i = 0; i < vector.length - 1; i++) {
+            result += Math.pow(vector[i], 2);
+        }
+        return Math.sqrt(result);
     }
 }
