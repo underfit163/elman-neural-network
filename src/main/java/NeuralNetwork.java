@@ -109,11 +109,11 @@ public class NeuralNetwork {
                 for (int j = 0; j < output.length; j++) {
                     lErr += Math.pow(e[j], 2);
                 }
-                lErr *= 0.5;
-                gError += Math.abs(lErr);
+                gError += lErr;
+
                 if (t == trainData.length - 1) {
                     // System.out.println("Локальная ошибка: " + lErr / output.length);
-                    System.out.println("Глобальная ошибка: " + gError);
+                    System.out.println("Глобальная ошибка: " + gError * 0.5);
                 }
                 //4. Сформировать вектор градиента целевой функции относительно
                 //весов выходного и скрытого слоя с использованием формул (137), (140) и (141).
