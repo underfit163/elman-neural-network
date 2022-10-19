@@ -48,9 +48,11 @@ public class Main {
             int hiddenLen = (4 + 3) / 2;
             //double alpha = (double) 1 / (testData.length - 1 + hiddenLen);
             double alpha = 0.5;
+            double koefMoment = 0.3;
+            int epoch = 100;
 
             NeuralNetwork neuralNetwork = new NeuralNetwork
-                    (4, hiddenLen, countClass, trainData, 100, alpha, 0.8);
+                    (4, hiddenLen, countClass, trainData, epoch, alpha, koefMoment);
 
             neuralNetwork.elmanTrain();
 

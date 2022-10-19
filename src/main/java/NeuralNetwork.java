@@ -5,25 +5,18 @@ public class NeuralNetwork {
     private int entersLen;//N+K
     private int hiddenLen;//K
     private int outputLen; //M
-
     private int epoch;
-
     private double alpha;
-
     private double koefMoment;
-
     private double[] enters; //x
     private double[] hidden;
-
     private double[] output;//y
     private double[] gS;
     private double[] uI;
-
     private double[][] wij; // веса первого слоя
     private double[][] wijPrev;
     private double[][] wsi; // веса второго слоя
     private double[][] wsiPrev;
-
     private double[][] trainData;
 
     public NeuralNetwork(int N, int K, int M, double[][] trainData, int epoch, double alpha, double koefMoment) {
@@ -51,8 +44,8 @@ public class NeuralNetwork {
         wsiPrev = new double[K + 1][M];
         //1. Присвоить весам случайные начальные значения, имеющие, как правило,
         //равномерное распределение в определенном интервале (например, между -1 и 1).
-        wij = randomVals(wij, -0.9, 0.9);
-        wsi = randomVals(wsi, -0.9, 0.9);
+        wij = randomVals(wij, -0.5, 0.5);
+        wsi = randomVals(wsi, -0.5, 0.5);
     }
 
     /**
@@ -114,6 +107,7 @@ public class NeuralNetwork {
                 if (t == trainData.length - 1) {
                     // System.out.println("Локальная ошибка: " + lErr / output.length);
                     System.out.println("Глобальная ошибка: " + gError * 0.5);
+                    //occurrence
                 }
                 //4. Сформировать вектор градиента целевой функции относительно
                 //весов выходного и скрытого слоя с использованием формул (137), (140) и (141).
@@ -127,11 +121,13 @@ public class NeuralNetwork {
                 double[] dv = new double[hidden.length];// мы от добавочного нейрона берем производную? да //xb - вместе с предыдущими значениями контекстного слоя? да
                 for (int i = 1; i < hidden.length; i++) {
                     //if (t != 0) {
-                    for (int k = 1; k < hidden.length; k++) {
-                        dv[i] += derivativeActivationFunction(enters[k + (enters.length - hidden.length)])
-                                * wij[k + (enters.length - hidden.length)][i];
-                    }
-                    //}
+                        for (int k = 1; k < hidden.length; k++) {
+                            dv[i] += derivativeActivationFunction(enters[k + (enters.length - hidden.length)])
+                                    * wij[k + (enters.length - hidden.length)][i];
+                        }
+                   // } else {
+                    //    dv[i] = 0;
+                   // }
                 }
 
                 for (int i = (enters.length - hidden.length + 1); i < enters.length; i++) {
@@ -157,7 +153,7 @@ public class NeuralNetwork {
                 //5. Уточнить значения весов сети согласно правилам метода наискорейшего спуска:
                 // для нейронов выходного слоя сети по формуле (144)
                 double wDelta;
-                koefMoment = Math.random();
+                //koefMoment = Math.random();
                 for (int i = 0; i < hidden.length; i++) {
                     for (int s = 0; s < output.length; s++) {
                         wDelta = (-1 * alpha * gdv2[i][s]) + koefMoment * wsiPrev[i][s];
@@ -171,7 +167,7 @@ public class NeuralNetwork {
                 for (int j = 0; j < enters.length; j++) {
                     for (int i = 1; i < hidden.length; i++) {
                         wDelta = (-1 * alpha * gdv1End[j][i]) + koefMoment * wijPrev[j][i];
-                        wij[j][i] = wij[j][i] + wDelta;//коэф рандомим?
+                        wij[j][i] = wij[j][i] + wDelta;//коэф рандомим? не желательно
                         wijPrev[j][i] = wDelta;
                     }
                 }
