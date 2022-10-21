@@ -37,7 +37,7 @@ public class Main {
             System.out.println("Тренировочные данные:");
             System.out.println(Arrays.deepToString(trainData));
 
-            trainData = shuffleMatrix(trainData);
+            shuffleMatrix(trainData);
             System.out.println("Тренировочные данные после шафла:");
             System.out.println(Arrays.deepToString(trainData));
 
@@ -108,13 +108,12 @@ public class Main {
         return allData;
     }
 
-    public static double[][] shuffleMatrix(double[][] matrix) {
+    public static void shuffleMatrix(double[][] matrix) {
         List<double[]> rows = new ArrayList<>(Arrays.asList(matrix));
         Collections.shuffle(rows);
         for (int i = 0; i < matrix.length; i++) {
             matrix[i] = rows.get(i);
         }
-        return matrix;
     }
 
     public static double[][] normalizeData(double[][] data) {

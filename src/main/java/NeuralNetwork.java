@@ -2,22 +2,22 @@ import java.util.Arrays;
 
 public class NeuralNetwork {
 
-    private int entersLen;//N+K
-    private int hiddenLen;//K
-    private int outputLen; //M
+    private final int entersLen;//N+K
+    private final int hiddenLen;//K
+    private final int outputLen; //M
     private int epoch;
-    private double alpha;
-    private double koefMoment;
-    private double[] enters; //x
-    private double[] hidden;
-    private double[] output;//y
-    private double[] gS;
-    private double[] uI;
+    private final double alpha;
+    private final double koefMoment;
+    private final double[] enters; //x
+    private final double[] hidden;
+    private final double[] output;//y
+    private final double[] gS;
+    private final double[] uI;
     private double[][] wij; // веса первого слоя
-    private double[][] wijPrev;
+    private final double[][] wijPrev;
     private double[][] wsi; // веса второго слоя
-    private double[][] wsiPrev;
-    private double[][] trainData;
+    private final double[][] wsiPrev;
+    private final double[][] trainData;
 
     public NeuralNetwork(int N, int K, int M, double[][] trainData, int epoch, double alpha, double koefMoment) {
         this.entersLen = N;
@@ -221,26 +221,5 @@ public class NeuralNetwork {
             }
         }
         return weights;
-    }
-
-
-    public double[] getEnters() {
-        return enters;
-    }
-
-    public double[] getHidden() {
-        return hidden;
-    }
-
-    public double[] getOutput() {
-        return output;
-    }
-
-    public double[] getgS() {
-        return gS;
-    }
-
-    public double[] getuI() {
-        return uI;
     }
 }
