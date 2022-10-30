@@ -18,7 +18,7 @@ public class WineMain {
                 //System.out.println("Все данные после нормализации:");
                 //System.out.println(Arrays.deepToString(allData));
 
-                double[][] trainData = new double[148][14];
+                double[][] trainData = new double[114][14];
                 double[][] testData = new double[30][14];
                 int countClass = 3;
 
@@ -27,8 +27,8 @@ public class WineMain {
 //                System.arraycopy(allData, 130, trainData, 110, 38);
 
                 System.arraycopy(allData, 0, trainData, 0, 38);
-                System.arraycopy(allData, 59, trainData, 49, 38);
-                System.arraycopy(allData, 130, trainData, 110, 38);
+                System.arraycopy(allData, 59, trainData, 38, 38);
+                System.arraycopy(allData, 130, trainData, 76, 38);
 
                 System.arraycopy(allData, 49, testData, 0, 10);
                 System.arraycopy(allData, 120, testData, 10, 10);
@@ -46,7 +46,7 @@ public class WineMain {
                 //System.out.println(Arrays.deepToString(testData));
 
                 //int hiddenLen = (testData[0].length - 1) * 2;
-                int hiddenLen = 30;
+                int hiddenLen = 100;
                 //double alpha = (double) 1 / (testData.length - 1 + hiddenLen);
                 double alpha = 0.1;
                 double koefMoment = 0.05;
@@ -80,7 +80,7 @@ public class WineMain {
                     }
                     System.out.println(Arrays.toString(arr));
                 }
-                System.out.println("Правильно предсказаных ответов: " + countTrue + " из " + testData.length);
+                System.out.println("Accuracy: " + (double) countTrue/testData.length);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

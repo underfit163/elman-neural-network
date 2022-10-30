@@ -79,9 +79,10 @@ public class NeuralNetwork {
      * Алгоритм наискорейшего спуска
      */
     public void elmanTrain() {
-        double gError;
         while (--epoch >= 0) {
-            gError = 0;
+            double gError = 0;
+            int countTrue = 0;
+            int maxI = 0;
             setEntersZero();
             //После уточнения значений весов перейти к пункту 2 алгоритма для расчета в очередной момент времени.
             for (int t = 0; t < trainData.length; t++) {
@@ -97,17 +98,27 @@ public class NeuralNetwork {
                         e[j] = output[j];
                     }
                 }
-                //целевая функция
+                //Средняя квадратичная ошибка MSE
                 double lErr = 0;
                 for (int j = 0; j < output.length; j++) {
                     lErr += Math.pow(e[j], 2);
                 }
                 gError += lErr;
 
+                //Accuracy
+                double max = -Double.MIN_VALUE;
+                for (int j = 0; j < output.length; j++) {
+                    if (output[j] > max) {
+                        max = output[j];
+                        maxI = j;
+                    }
+                }
+                if (maxI + 1 == trainData[t][trainData[0].length - 1]) {
+                    countTrue++;
+                }
                 if (t == trainData.length - 1) {
-                    // System.out.println("Локальная ошибка: " + lErr / output.length);
-                    System.out.println("Глобальная ошибка: " + gError * 1 / 3);
-                    //occurrence
+                    System.out.println("Средняя квадратичная ошибка MSE: " + (gError / 3)/ (trainData.length));
+                    System.out.println("Accuracy: " + (double) countTrue/trainData.length);
                 }
                 //4. Сформировать вектор градиента целевой функции относительно
                 //весов выходного и скрытого слоя с использованием формул (137), (140) и (141).
