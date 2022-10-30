@@ -45,7 +45,7 @@ public class Main {
             System.out.println(Arrays.deepToString(testData));
 
             //int hiddenLen = (testData[0].length - 1) * 2;
-            int hiddenLen = (4 + 3) / 2;
+            int hiddenLen = 7;
             //double alpha = (double) 1 / (testData.length - 1 + hiddenLen);
             double alpha = 0.5;
             double koefMoment = 0.3;

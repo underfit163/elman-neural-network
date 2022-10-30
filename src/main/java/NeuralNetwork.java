@@ -106,7 +106,7 @@ public class NeuralNetwork {
 
                 if (t == trainData.length - 1) {
                     // System.out.println("Локальная ошибка: " + lErr / output.length);
-                    System.out.println("Глобальная ошибка: " + gError * 0.5);
+                    System.out.println("Глобальная ошибка: " + gError * 1 / 3);
                     //occurrence
                 }
                 //4. Сформировать вектор градиента целевой функции относительно
@@ -117,17 +117,18 @@ public class NeuralNetwork {
                         gdv2[i][s] += e[s] * derivativeActivationFunction(gS[s]) * hidden[i];
                     }
                 }
-
+                // Вопрос, почему когда мы когда рассчитываем градиент для скрытого слоя,
+                // мы не используем веса между скрытым и входным слоем? Ведь они вносят вклад в ошибку
                 double[] dv = new double[hidden.length];// мы от добавочного нейрона берем производную? да //xb - вместе с предыдущими значениями контекстного слоя? да
                 for (int i = 1; i < hidden.length; i++) {
-                    //if (t != 0) {
+                    if (t != 0) {
                         for (int k = 1; k < hidden.length; k++) {
                             dv[i] += derivativeActivationFunction(enters[k + (enters.length - hidden.length)])
                                     * wij[k + (enters.length - hidden.length)][i];
                         }
-                   // } else {
-                    //    dv[i] = 0;
-                   // }
+                    } else {
+                        dv[i] = 0;
+                    }
                 }
 
                 for (int i = (enters.length - hidden.length + 1); i < enters.length; i++) {
@@ -156,7 +157,11 @@ public class NeuralNetwork {
                 //koefMoment = Math.random();
                 for (int i = 0; i < hidden.length; i++) {
                     for (int s = 0; s < output.length; s++) {
-                        wDelta = (-1 * alpha * gdv2[i][s]) + koefMoment * wsiPrev[i][s];
+//                        if (t != 0) {
+                            wDelta = (-1 * alpha * gdv2[i][s]) + koefMoment * wsiPrev[i][s];
+//                        } else {
+//                            wDelta = (-1 * alpha * gdv2[i][s]);
+//                        }
                         wsi[i][s] = wsi[i][s] + wDelta;
                         wsiPrev[i][s] = wDelta;
                     }
@@ -166,11 +171,16 @@ public class NeuralNetwork {
                 //koefMoment = Math.random();
                 for (int j = 0; j < enters.length; j++) {
                     for (int i = 1; i < hidden.length; i++) {
-                        wDelta = (-1 * alpha * gdv1End[j][i]) + koefMoment * wijPrev[j][i];
+//                        if (t != 0) {
+                            wDelta = (-1 * alpha * gdv1End[j][i]) + koefMoment * wijPrev[j][i];
+//                        } else {
+//                            wDelta = (-1 * alpha * gdv1End[j][i]);
+//                        }
                         wij[j][i] = wij[j][i] + wDelta;//коэф рандомим? не желательно
                         wijPrev[j][i] = wDelta;
                     }
                 }
+                //System.out.println(Arrays.deepToString(wij));
             }
         }
     }
