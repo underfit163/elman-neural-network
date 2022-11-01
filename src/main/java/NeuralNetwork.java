@@ -103,7 +103,7 @@ public class NeuralNetwork {
                 for (int j = 0; j < output.length; j++) {
                     lErr += Math.pow(e[j], 2);
                 }
-                gError += lErr;
+                gError += lErr / 3;
 
                 //Accuracy
                 double max = -Double.MIN_VALUE;
@@ -117,7 +117,7 @@ public class NeuralNetwork {
                     countTrue++;
                 }
                 if (t == trainData.length - 1) {
-                    System.out.println("Средняя квадратичная ошибка MSE: " + (gError / 3)/ (trainData.length));
+                    System.out.println("Средняя квадратичная ошибка MSE: " + (gError)/ (trainData.length));
                     System.out.println("Accuracy: " + (double) countTrue/trainData.length);
                 }
                 //4. Сформировать вектор градиента целевой функции относительно

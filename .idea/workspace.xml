@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4c7f3247-8761-4e73-b9cd-7301e3fd04a7" name="Changes" comment="update train alg">
+    <list default="true" id="4c7f3247-8761-4e73-b9cd-7301e3fd04a7" name="Changes" comment="add accuracy and cредняя квадратичная ошибка MSE">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/NeuralNetwork.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/NeuralNetwork.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/WineMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WineMain.java" afterDir="false" />
@@ -96,7 +96,9 @@
       <workItem from="1665568831701" duration="4293000" />
       <workItem from="1665910606401" duration="8820000" />
       <workItem from="1665942760480" duration="3652000" />
-      <workItem from="1667148289011" duration="7729000" />
+      <workItem from="1667148289011" duration="7823000" />
+      <workItem from="1667244799578" duration="4927000" />
+      <workItem from="1667327042441" duration="15990000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <created>1664745482829</created>
@@ -154,7 +156,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667093104616</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="add accuracy and cредняя квадратичная ошибка MSE">
+      <created>1667160463735</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1667160463735</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -176,6 +185,8 @@
     <MESSAGE value="add parse data" />
     <MESSAGE value="add train alg" />
     <MESSAGE value="update train alg" />
-    <option name="LAST_COMMIT_MESSAGE" value="update train alg" />
+    <MESSAGE value="add accuracy and cредняя квадратичная ошибка MS" />
+    <MESSAGE value="add accuracy and cредняя квадратичная ошибка MSE" />
+    <option name="LAST_COMMIT_MESSAGE" value="add accuracy and cредняя квадратичная ошибка MSE" />
   </component>
 </project>
