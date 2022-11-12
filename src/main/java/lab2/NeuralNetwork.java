@@ -1,3 +1,5 @@
+package lab2;
+
 import java.util.Arrays;
 
 public class NeuralNetwork {
@@ -17,9 +19,9 @@ public class NeuralNetwork {
     private final double[][] wijPrev;
     private double[][] wsi; // веса второго слоя
     private final double[][] wsiPrev;
-    private final double[][] trainData;
+    private final double[] trainData;
 
-    public NeuralNetwork(int N, int K, int M, double[][] trainData, int epoch, double alpha, double koefMoment) {
+    public NeuralNetwork(int N, int K, int M, double[] trainData, int epoch, double alpha, double koefMoment) {
         this.entersLen = N;
         this.hiddenLen = K;
         this.outputLen = M;
@@ -81,45 +83,30 @@ public class NeuralNetwork {
     public void elmanTrain() {
         while (--epoch >= 0) {
             double gError = 0;
-            int countTrue = 0;
-            int maxI = 0;
             setEntersZero();
             //clearHidden();
+            int offset = 0;
+            double[] currentTrainData;
             //После уточнения значений весов перейти к пункту 2 алгоритма для расчета в очередной момент времени.
-            for (int t = 0; t < trainData.length; t++) {
-                elmanOuter(trainData[t]);
+            while (offset < (trainData.length - (entersLen + 1))) {
+                currentTrainData = Arrays.copyOfRange(trainData, offset, offset + entersLen + output.length);
+                elmanOuter(currentTrainData);
                 //3. Определить вектор погрешности обучения для нейронов
                 //выходного слоя как разность между фактическим и ожидаемым
                 //значениями сигналов выходных нейронов.
                 double[] e = new double[output.length];
                 for (int j = 0; j < output.length; j++) {
-                    if (j + 1 == trainData[t][trainData[0].length - 1])
-                        e[j] = output[j] - 1;
-                    else {
-                        e[j] = output[j];
-                    }
+                    e[j] = output[j] - currentTrainData[currentTrainData.length - 1 - (output.length - 1) + j];
                 }
                 //Средняя квадратичная ошибка MSE
                 double lErr = 0;
                 for (int j = 0; j < output.length; j++) {
                     lErr += Math.pow(e[j], 2);
                 }
-                gError += lErr / 3;
+                gError += lErr / output.length;
 
-                //Accuracy
-                double max = -Double.MIN_VALUE;
-                for (int j = 0; j < output.length; j++) {
-                    if (output[j] > max) {
-                        max = output[j];
-                        maxI = j;
-                    }
-                }
-                if (maxI + 1 == trainData[t][trainData[0].length - 1]) {
-                    countTrue++;
-                }
-                if (t == trainData.length - 1) {
-                    System.out.println("Средняя квадратичная ошибка MSE: " + (gError)/ (trainData.length));
-                    System.out.println("Accuracy: " + (double) countTrue/trainData.length);
+                if (offset == (trainData.length - 1 - (entersLen + 1))) {
+                    System.out.println("Средняя квадратичная ошибка MSE: " + (gError) / offset);
                 }
                 //4. Сформировать вектор градиента целевой функции относительно
                 //весов выходного и скрытого слоя с использованием формул (137), (140) и (141).
@@ -133,7 +120,7 @@ public class NeuralNetwork {
                 // мы не используем веса между скрытым и входным слоем? Ведь они вносят вклад в ошибку
                 double[] dv = new double[hidden.length];// мы от добавочного нейрона берем производную? да //xb - вместе с предыдущими значениями контекстного слоя? да
                 for (int i = 1; i < hidden.length; i++) {
-                    if (t != 0) {
+                    if (offset != 0) {
                         for (int k = 1; k < hidden.length; k++) {
                             dv[i] += derivativeActivationFunction(enters[k + (enters.length - hidden.length)])
                                     * wij[k + (enters.length - hidden.length)][i];
@@ -170,7 +157,7 @@ public class NeuralNetwork {
                 for (int i = 0; i < hidden.length; i++) {
                     for (int s = 0; s < output.length; s++) {
 //                        if (t != 0) {
-                            wDelta = (-1 * alpha * gdv2[i][s]) + koefMoment * wsiPrev[i][s];
+                        wDelta = (-1 * alpha * gdv2[i][s]) + koefMoment * wsiPrev[i][s];
 //                        } else {
 //                            wDelta = (-1 * alpha * gdv2[i][s]);
 //                        }
@@ -184,7 +171,7 @@ public class NeuralNetwork {
                 for (int j = 0; j < enters.length; j++) {
                     for (int i = 1; i < hidden.length; i++) {
 //                        if (t != 0) {
-                            wDelta = (-1 * alpha * gdv1End[j][i]) + koefMoment * wijPrev[j][i];
+                        wDelta = (-1 * alpha * gdv1End[j][i]) + koefMoment * wijPrev[j][i];
 //                        } else {
 //                            wDelta = (-1 * alpha * gdv1End[j][i]);
 //                        }
@@ -192,7 +179,7 @@ public class NeuralNetwork {
                         wijPrev[j][i] = wDelta;
                     }
                 }
-                //System.out.println(Arrays.deepToString(wij));
+                offset++;
             }
         }
     }
@@ -211,14 +198,14 @@ public class NeuralNetwork {
     }
 
     //Логистическая функция активации
-    private double activationFunction(double x) {
-        return (1 / (1 + Math.pow(Math.E, (-1 * x))));
-    }
-
-    private double derivativeActivationFunction(double x) {
-        double f = (1 / (1 + Math.pow(Math.E, (-1 * x))));
-        return f * (1 - f);
-    }
+//    private double activationFunction(double x) {
+//        return (1 / (1 + Math.pow(Math.E, (-1 * x))));
+//    }
+//
+//    private double derivativeActivationFunction(double x) {
+//        double f = (1 / (1 + Math.pow(Math.E, (-1 * x))));
+//        return f * (1 - f);
+//    }
 
     //Гипорболический тангенс
 //    private double activationFunction(double x) {
@@ -230,13 +217,14 @@ public class NeuralNetwork {
 //        return 1 - Math.pow(f, 2);
 //    }
 
-    //    private double activationFunction(double x){
-//        return Math.atan(x);
-//    }
-//
-//    private double derivativeActivationFunction(double x) {
-//        return 1.0 / (1.0 + x * x);
-//    }
+    private double activationFunction(double x) {
+        return Math.atan(x);
+    }
+
+    private double derivativeActivationFunction(double x) {
+        return 1.0 / (1.0 + x * x);
+    }
+
     public void setEntersZero() {
         Arrays.fill(enters, 0);
         enters[0] = 1;

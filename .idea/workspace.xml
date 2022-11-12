@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4c7f3247-8761-4e73-b9cd-7301e3fd04a7" name="Changes" comment="add accuracy and cредняя квадратичная ошибка MSE">
+    <list default="true" id="4c7f3247-8761-4e73-b9cd-7301e3fd04a7" name="Changes" comment="update train alg">
+      <change afterPath="$PROJECT_DIR$/src/main/java/lab2/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/lab2/NeuralNetwork.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/NeuralNetwork.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/NeuralNetwork.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/WineMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WineMain.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,19 +41,29 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/optimazeAlg&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/projects/elman-neural-network&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\projects\elman-neural-network" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\elman-neural-network" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="lab2" />
+    </key>
   </component>
-  <component name="RunManager" selected="Application.WineMain">
+  <component name="RunManager" selected="Application.lab2.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="elman-neural-network" />
@@ -66,8 +78,33 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="lab2.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="lab2.Main" />
+      <module name="elman-neural-network" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="lab2.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.lab2.Main" />
         <item itemvalue="Application.WineMain" />
         <item itemvalue="Application.Main" />
       </list>
@@ -96,9 +133,12 @@
       <workItem from="1665568831701" duration="4293000" />
       <workItem from="1665910606401" duration="8820000" />
       <workItem from="1665942760480" duration="3652000" />
-      <workItem from="1667148289011" duration="7823000" />
-      <workItem from="1667244799578" duration="4927000" />
-      <workItem from="1667327042441" duration="15990000" />
+      <workItem from="1665963644637" duration="1257000" />
+      <workItem from="1665970417638" duration="623000" />
+      <workItem from="1666014764846" duration="4013000" />
+      <workItem from="1666086111319" duration="39269000" />
+      <workItem from="1666165441097" duration="7775000" />
+      <workItem from="1666347483451" duration="829000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <created>1664745482829</created>
@@ -150,20 +190,27 @@
       <updated>1665930133925</updated>
     </task>
     <task id="LOCAL-00008" summary="update train alg">
-      <created>1667093104616</created>
+      <created>1666138278874</created>
       <option name="number" value="00008" />
       <option name="presentableId" value="LOCAL-00008" />
       <option name="project" value="LOCAL" />
-      <updated>1667093104616</updated>
+      <updated>1666138278874</updated>
     </task>
-    <task id="LOCAL-00009" summary="add accuracy and cредняя квадратичная ошибка MSE">
-      <created>1667160463735</created>
+    <task id="LOCAL-00009" summary="update train alg">
+      <created>1666166519823</created>
       <option name="number" value="00009" />
       <option name="presentableId" value="LOCAL-00009" />
       <option name="project" value="LOCAL" />
-      <updated>1667160463735</updated>
+      <updated>1666166519823</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="update train alg">
+      <created>1666175956142</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1666175956142</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -185,8 +232,22 @@
     <MESSAGE value="add parse data" />
     <MESSAGE value="add train alg" />
     <MESSAGE value="update train alg" />
-    <MESSAGE value="add accuracy and cредняя квадратичная ошибка MS" />
-    <MESSAGE value="add accuracy and cредняя квадратичная ошибка MSE" />
-    <option name="LAST_COMMIT_MESSAGE" value="add accuracy and cредняя квадратичная ошибка MSE" />
+    <option name="LAST_COMMIT_MESSAGE" value="update train alg" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/lab2/Main.java</url>
+          <line>19</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/lab2/Main.java</url>
+          <line>17</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

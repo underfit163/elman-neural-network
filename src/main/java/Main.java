@@ -45,11 +45,11 @@ public class Main {
             System.out.println(Arrays.deepToString(testData));
 
             //int hiddenLen = (testData[0].length - 1) * 2;
-            int hiddenLen = 7;
+            int hiddenLen = 50;
             //double alpha = (double) 1 / (testData.length - 1 + hiddenLen);
             double alpha = 0.5;
             double koefMoment = 0.3;
-            int epoch = 100;
+            int epoch = 10;
 
             NeuralNetwork neuralNetwork = new NeuralNetwork
                     (4, hiddenLen, countClass, trainData, epoch, alpha, koefMoment);
@@ -57,6 +57,7 @@ public class Main {
             neuralNetwork.elmanTrain();
 
             neuralNetwork.setEntersZero();
+            //neuralNetwork.clearHidden();
             System.out.println("Выходной слой:");
             int cl = 1;
             int countTrue = 0;
