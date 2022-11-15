@@ -9,6 +9,8 @@ public class TempMain {
         int countNum = 301;
         double[] allData = readData(fileName, countNum);
         System.out.println(Arrays.toString(allData));
+        allData = normalizeData(allData);
+        System.out.println(Arrays.toString(allData));
 
         double[] trainData = new double[300];
         double[] testData = new double[6];
@@ -32,7 +34,7 @@ public class TempMain {
         //neuralNetwork.clearHidden();
         System.out.println("Выходной слой:");
         double[] arr = neuralNetwork.elmanOuter(testData);
-        System.out.println(Arrays.toString(arr));
+        System.out.println(Arrays.toString(deNormalizeData(arr)));
     }
 
     private static double[] readData(String fileName, int countNum) {
@@ -46,22 +48,26 @@ public class TempMain {
         }
         return allData;
     }
+    static double d2 = 1;
+    static double d1 = -1;
+    static double maxEl;
+    static double minEl;
 
-    public static double[][] normalizeData(double[][] data) {
+    public static double[] normalizeData(double[] data) {
+        maxEl = Arrays.stream(data).max().orElse(0);
+        minEl = Arrays.stream(data).min().orElse(0);
+        double[] normData = new double[data.length];
         for (int i = 0; i < data.length; i++) {
-            double divider = calcDividerForNormalization(data[i]);
-            for (int j = 0; j < data[i].length - 1; j++) {
-                data[i][j] = data[i][j] / divider;
-            }
+            normData[i] = ((data[i] - minEl) * (d2 - d1) / (maxEl - minEl)) + d1;
         }
-        return data;
+        return normData;
     }
 
-    private static double calcDividerForNormalization(double[] vector) {
-        double result = 0;
-        for (int i = 0; i < vector.length - 1; i++) {
-            result += Math.pow(vector[i], 2);
+    public static double[] deNormalizeData(double[] normData) {
+        double[] data = new double[normData.length];
+        for (int i = 0; i < data.length; i++) {
+            data[i] = ((normData[i] - d1) * (maxEl - minEl)) / (d2 - d1) + minEl;
         }
-        return Math.sqrt(result);
+        return data;
     }
 }

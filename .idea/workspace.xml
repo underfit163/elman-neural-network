@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4c7f3247-8761-4e73-b9cd-7301e3fd04a7" name="Changes" comment="add lab2">
-      <change afterPath="$PROJECT_DIR$/src/main/java/lab2/TempMain.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/temp.data.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lab2/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lab2/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lab2/NeuralNetwork.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lab2/NeuralNetwork.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lab2/TempMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lab2/TempMain.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +60,7 @@
       <recent name="lab2" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.lab2.Main">
+  <component name="RunManager" selected="Application.TempMain">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="elman-neural-network" />
@@ -117,8 +114,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.lab2.Main" />
         <item itemvalue="Application.TempMain" />
+        <item itemvalue="Application.lab2.Main" />
         <item itemvalue="Application.WineMain" />
         <item itemvalue="Application.Main" />
       </list>
@@ -154,7 +151,7 @@
       <workItem from="1666165441097" duration="7775000" />
       <workItem from="1666347483451" duration="829000" />
       <workItem from="1668457990489" duration="3327000" />
-      <workItem from="1668533049277" duration="5290000" />
+      <workItem from="1668533049277" duration="7432000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <created>1664745482829</created>
@@ -233,7 +230,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668219080627</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="add lab2">
+      <created>1668541198643</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1668541198643</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -257,16 +261,5 @@
     <MESSAGE value="update train alg" />
     <MESSAGE value="add lab2" />
     <option name="LAST_COMMIT_MESSAGE" value="add lab2" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/lab2/NeuralNetwork.java</url>
-          <line>89</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
