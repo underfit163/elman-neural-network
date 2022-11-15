@@ -48,10 +48,10 @@ public class TempMain {
         }
         return allData;
     }
-    static double d2 = 1;
-    static double d1 = -1;
-    static double maxEl;
-    static double minEl;
+    private static final double d2 = 1;
+    private static final double d1 = -1;
+    private static double maxEl;
+    private static double minEl;
 
     public static double[] normalizeData(double[] data) {
         maxEl = Arrays.stream(data).max().orElse(0);
