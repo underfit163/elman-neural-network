@@ -3,7 +3,6 @@ package lab2;
 import java.util.Arrays;
 
 public class NeuralNetwork {
-
     private final int entersLen;//N+K
     private final int hiddenLen;//K
     private final int outputLen; //M
