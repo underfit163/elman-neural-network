@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4c7f3247-8761-4e73-b9cd-7301e3fd04a7" name="Changes" comment="add lab2">
+      <change afterPath="$PROJECT_DIR$/temp.data.refactor" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sigma.data.txt" beforeDir="false" afterPath="$PROJECT_DIR$/sigma.data.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lab2/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lab2/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lab2/NeuralNetwork.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lab2/NeuralNetwork.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/lab2/TempMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lab2/TempMain.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -27,28 +31,31 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2FX2yRDzjOPNosGk5qQHeJ9R44n" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/projects/elman-neural-network&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.fileTypes&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/projects/optimizeAlg",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.fileTypes"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\projects\elman-neural-network" />
@@ -116,8 +123,8 @@
       <list>
         <item itemvalue="Application.TempMain" />
         <item itemvalue="Application.lab2.Main" />
-        <item itemvalue="Application.WineMain" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.WineMain" />
       </list>
     </recent_temporary>
   </component>
@@ -151,7 +158,15 @@
       <workItem from="1666165441097" duration="7775000" />
       <workItem from="1666347483451" duration="829000" />
       <workItem from="1668457990489" duration="3327000" />
-      <workItem from="1668533049277" duration="9819000" />
+      <workItem from="1668533049277" duration="9924000" />
+      <workItem from="1668585899899" duration="10029000" />
+      <workItem from="1668613811437" duration="613000" />
+      <workItem from="1668863784707" duration="699000" />
+      <workItem from="1668956648830" duration="4987000" />
+      <workItem from="1669009355703" duration="1860000" />
+      <workItem from="1669056702158" duration="6297000" />
+      <workItem from="1669114343345" duration="4571000" />
+      <workItem from="1669126194735" duration="13000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <created>1664745482829</created>
@@ -244,7 +259,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668543314977</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="add lab2">
+      <created>1668545800221</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1668545800221</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -262,11 +284,28 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="first commit" />
     <MESSAGE value="add parse data" />
     <MESSAGE value="add train alg" />
     <MESSAGE value="update train alg" />
     <MESSAGE value="add lab2" />
     <option name="LAST_COMMIT_MESSAGE" value="add lab2" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/lab2/Main.java</url>
+          <line>75</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/lab2/Main.java</url>
+          <line>76</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

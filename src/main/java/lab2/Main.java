@@ -6,32 +6,54 @@ import java.util.Arrays;
 public class Main {
     public static void main(String[] args) {
         String fileName = "sigma.data.txt";
-        int countNum = 301;
+        int countNum = 299;
         double[] allData = generateData(fileName, countNum);
+        allData = normalizeData(allData);
 
-        double[] trainData = new double[300];
-        double[] testData = new double[6];
+        double[] trainData = new double[289];
+        double[] testData = new double[15];
 
-        System.arraycopy(allData, 0, trainData, 0, 300);
-
-        System.arraycopy(allData, 295, testData, 0, 6);
+        System.arraycopy(allData, 0, trainData, 0, 289);
+        System.arraycopy(allData, 284, testData, 0, 15);
 
         int hiddenLen = 10;
-        double alpha = 0.1;
+        double alpha = 0.3;
         double koefMoment = 0.05;
-        int epoch = 1;
+        int epoch = 100;
         int countOut = 1;
+        int window = 10;
 
         NeuralNetwork neuralNetwork = new NeuralNetwork
-                (5, hiddenLen, countOut, trainData, epoch, alpha, koefMoment);
+                (window, hiddenLen, countOut, trainData, epoch, alpha, koefMoment);
 
         neuralNetwork.elmanTrain();
 
         neuralNetwork.setEntersZero();
         //neuralNetwork.clearHidden();
         System.out.println("Выходной слой:");
-        double[] arr = neuralNetwork.elmanOuter(testData);
-        System.out.println(Arrays.toString(arr));
+        int offset = 0;
+        double gError = 0;
+        double[] currentTestData;
+        while (offset <= (testData.length - (window + 1))) {
+            currentTestData = Arrays.copyOfRange(testData, offset, offset + window + countOut);
+            double[] output = neuralNetwork.elmanOuter(testData);
+            double[] e = new double[output.length];
+            for (int j = 0; j < output.length; j++) {
+                e[j] = output[j] - currentTestData[currentTestData.length - 1 - (output.length - 1) + j];
+            }
+            //Средняя квадратичная ошибка MSE
+            double lErr = 0;
+            for (int j = 0; j < output.length; j++) {
+                lErr += Math.pow(e[j], 2);
+            }
+            gError += lErr / output.length;
+
+            System.out.println(Arrays.toString(deNormalizeData(output)));
+            if (offset == (testData.length - 1 - window)) {
+                System.out.println("Средняя квадратичная ошибка MSE: " + (gError) / (offset+1));
+            }
+            offset++;
+        }
     }
 
     private static double[] generateData(String fileName, int countNum) {
@@ -45,5 +67,26 @@ public class Main {
             throw new RuntimeException(e);
         }
         return allData;
+    }
+    private static final double d2 = 1;
+    private static final double d1 = 0;
+    private static double maxEl;
+    private static double minEl;
+    public static double[] normalizeData(double[] data) {
+        maxEl = Arrays.stream(data).max().orElse(0);
+        minEl = Arrays.stream(data).min().orElse(0);
+        double[] normData = new double[data.length];
+        for (int i = 0; i < data.length; i++) {
+            normData[i] = ((data[i] - minEl) * (d2 - d1) / (maxEl - minEl)) + d1;
+        }
+        return normData;
+    }
+
+    public static double[] deNormalizeData(double[] normData) {
+        double[] data = new double[normData.length];
+        for (int i = 0; i < data.length; i++) {
+            data[i] = ((normData[i] - d1) * (maxEl - minEl)) / (d2 - d1) + minEl;
+        }
+        return data;
     }
 }

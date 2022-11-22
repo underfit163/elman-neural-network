@@ -6,42 +6,67 @@ import java.util.Arrays;
 public class TempMain {
     public static void main(String[] args) {
         String fileName = "temp.data.txt";
-        int countNum = 301;
+        int countNum = 299;
         double[] allData = readData(fileName, countNum);
         System.out.println(Arrays.toString(allData));
         allData = normalizeData(allData);
         System.out.println(Arrays.toString(allData));
 
-        double[] trainData = new double[300];
-        double[] testData = new double[6];
+        double[] trainData = new double[289];
+        double[] testData = new double[15];
 
-        System.arraycopy(allData, 0, trainData, 0, 300);
-
-        System.arraycopy(allData, 295, testData, 0, 6);
+        System.arraycopy(allData, 0, trainData, 0, 289);
+        System.arraycopy(allData, 284, testData, 0, 15);
 
         int hiddenLen = 10;
-        double alpha = 0.1;
+        double alpha = 0.2;
         double koefMoment = 0.05;
-        int epoch = 50;
+        int epoch = 100;
         int countOut = 1;
+        int window = 3;
 
         NeuralNetwork neuralNetwork = new NeuralNetwork
-                (5, hiddenLen, countOut, trainData, epoch, alpha, koefMoment);
+                (window, hiddenLen, countOut, trainData, epoch, alpha, koefMoment);
 
         neuralNetwork.elmanTrain();
-
         neuralNetwork.setEntersZero();
         //neuralNetwork.clearHidden();
         System.out.println("Выходной слой:");
-        double[] arr = neuralNetwork.elmanOuter(testData);
-        System.out.println(Arrays.toString(deNormalizeData(arr)));
+        int offset = 0;
+        double gError = 0;
+        double[] currentTestData;
+        while (offset <= (testData.length - (window + 1))) {
+            currentTestData = Arrays.copyOfRange(testData, offset, offset + window + countOut);
+            double[] output = neuralNetwork.elmanOuter(testData);
+            double[] e = new double[output.length];
+            for (int j = 0; j < output.length; j++) {
+                e[j] = output[j] - currentTestData[currentTestData.length - 1 - (output.length - 1) + j];
+            }
+            //Средняя квадратичная ошибка MSE
+            double lErr = 0;
+            for (int j = 0; j < output.length; j++) {
+                lErr += Math.pow(e[j], 2);
+            }
+            gError += lErr / output.length;
+
+            System.out.println(Arrays.toString(deNormalizeData(output)));
+            if (offset == (testData.length - 1 - window)) {
+                System.out.println("Средняя квадратичная ошибка MSE: " + (gError) / (offset+1));
+            }
+            offset++;
+        }
+
+
     }
 
     private static double[] readData(String fileName, int countNum) {
         double[] allData = new double[countNum];
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
+        PrintWriter printWriter = new PrintWriter("temp.data.refactor")) {
             for (int i = 0; i < countNum; i++) {
-                allData[i] = Double.parseDouble(bufferedReader.readLine().split(",")[1]);
+                String[] s = bufferedReader.readLine().split(",");
+                allData[i] = Double.parseDouble(s[1]);
+                printWriter.println(s[0].replaceAll("\"",""));
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -49,7 +74,7 @@ public class TempMain {
         return allData;
     }
     private static final double d2 = 1;
-    private static final double d1 = -1;
+    private static final double d1 = 0;
     private static double maxEl;
     private static double minEl;
 
